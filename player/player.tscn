@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://fnb72xif47v7" path="res://assets/john/john-idle.png" id="2_qjkh3"]
 [ext_resource type="Texture2D" uid="uid://ca6r70ditojvk" path="res://assets/john/john-jump.png" id="3_g6k8r"]
 [ext_resource type="Texture2D" uid="uid://be2jh52imylsj" path="res://assets/john/john-run.png" id="4_boad6"]
+[ext_resource type="Script" uid="uid://b1b0iqdclmrix" path="res://player/camera.gd" id="6_g6k8r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g6k8r"]
 atlas = ExtResource("1_yw30f")
@@ -170,3 +171,11 @@ position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_q7vo6")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=38672991]
+unique_name_in_owner = true
+position = Vector2(125, 0)
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.45
+editor_draw_drag_margin = true
+script = ExtResource("6_g6k8r")

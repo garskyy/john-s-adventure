@@ -1,11 +1,34 @@
 [gd_scene format=3 uid="uid://dfhfnoyfs0x12"]
 
 [ext_resource type="PackedScene" uid="uid://bpo1keeev1vwh" path="res://player/player.tscn" id="1_ig7tw"]
+[ext_resource type="Shader" uid="uid://cyu077uhioxt0" path="res://crt_effect.gdshader" id="2_0xm2m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mdck7"]
 size = Vector2(304, 20)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mdck7"]
+shader = ExtResource("2_0xm2m")
+shader_parameter/curvature = 6.000000285
+shader_parameter/vignette_intensity = 0.2000000095
+shader_parameter/scanline_opacity = 0.0250000011875
+shader_parameter/scanline_count = 50.0
+shader_parameter/noise_intensity = 0.0050000002375
+
 [node name="Main" type="Node2D" unique_id=1969456396]
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=585165923]
+position = Vector2(330, -49)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1476164550]
+position = Vector2(26, 0)
+shape = SubResource("RectangleShape2D_mdck7")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D2" unique_id=1189328430]
+offset_left = -126.0
+offset_top = -10.0
+offset_right = 13.0
+offset_bottom = 11.0
+scale = Vector2(2.1938195, 0.95755565)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=174860892]
 position = Vector2(0, -1)
@@ -23,3 +46,15 @@ scale = Vector2(2.1938195, 0.95755565)
 
 [node name="Player" parent="." unique_id=229188862 instance=ExtResource("1_ig7tw")]
 position = Vector2(-2, -90)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1216870202]
+layer = 100
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=799920684]
+material = SubResource("ShaderMaterial_mdck7")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

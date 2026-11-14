@@ -5,6 +5,8 @@ const JUMP_VELOCITY = -400.0
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity") * 1.2
 var is_facing_left: bool = false
 @onready var sprite = %AnimatedSprite2D
+@onready var camera: Camera2D = %Camera2D
+
 
 func _physics_process(delta: float) -> void:
 	# Физика
@@ -20,7 +22,10 @@ func _physics_process(delta: float) -> void:
 		is_facing_left = velocity.x < 0
 	sprite.flip_h = is_facing_left
 	move_and_slide()
-	
+		# Не даем игроку уйти за левый край экрана (+8 пикселей — половина ширины коллизии)
+	if global_position.x < camera.limit_left + 8.0:
+		global_position.x = camera.limit_left + 8.0
+
 	# Анимации
 	if not is_on_floor():
 		sprite.play("jump") # Прыжок
